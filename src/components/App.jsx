@@ -43,10 +43,10 @@ const App = () => {
     const link = `https://pixabay.com/api/?q=${text}&page=${page}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12&height=250`;
     const request = await fetch(link);
     const respons = await request.json();
-    setImages([...images, ...respons.hits]);
+    setImages(prevItems => [...prevItems, ...respons.hits]);
     setTotal(respons.total);
     setLoading(false);
-  }, [page]);
+  }, [page, text]);
 
   useEffect(() => {
     if (page !== 1) {
