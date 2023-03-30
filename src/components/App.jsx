@@ -18,6 +18,17 @@ const App = () => {
   const [isLoading, setLoading] = useState(false);
   const [total, setTotal] = useState('');
 
+  useEffect(() => {
+    if (page !== 1) {
+      fetchdata();
+    }
+  }, [page]);
+  useEffect(() => {
+    if (text !== '') {
+      fetchdata();
+    }
+  }, [text]);
+
   const handleSubmit = e => {
     e.preventDefault();
     setImages([]);
@@ -70,17 +81,6 @@ const App = () => {
   const loadMode = () => {
     setPage(page + 1);
   };
-
-  useEffect(() => {
-    if (page !== 1) {
-      fetchdata();
-    }
-  }, [page]);
-  useEffect(() => {
-    if (text !== '') {
-      fetchdata();
-    }
-  }, [text]);
 
   return (
     <>
