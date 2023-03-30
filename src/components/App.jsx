@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Searchbar from 'components/Searchbar/Searchbar';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
 import Button from 'components/Button/Button';
@@ -25,7 +25,7 @@ const App = () => {
     setText(imageText);
   };
 
-  const fetchWhenNewText = async () => {
+  const fetchWhenNewText = useCallback(async () => {
     const link = `https://pixabay.com/api/?q=${text}&page=${1}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12&height=250`;
     const request = await fetch(link);
     const respons = await request.json();
@@ -37,28 +37,28 @@ const App = () => {
       setTotal(respons.total);
       setLoading(false);
     }
-  };
+  }, [text]);
 
-  const fetchDataWhenPageChange = async () => {
+  const fetchDataWhenPageChange = useCallback(async () => {
     const link = `https://pixabay.com/api/?q=${text}&page=${page}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12&height=250`;
     const request = await fetch(link);
     const respons = await request.json();
     setImages([...images, ...respons.hits]);
     setTotal(respons.total);
     setLoading(false);
-  };
+  }, [page]);
 
   useEffect(() => {
     if (page !== 1) {
       fetchDataWhenPageChange();
     }
-  }, [page]);
+  }, [page, fetchDataWhenPageChange]);
 
   useEffect(() => {
     if (text !== '') {
       fetchWhenNewText();
     }
-  }, [text]);
+  }, [text, fetchWhenNewText]);
 
   const handleClick = e => {
     if (e.target.tagName === 'IMG') {
