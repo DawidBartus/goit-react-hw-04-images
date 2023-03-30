@@ -18,17 +18,6 @@ const App = () => {
   const [isLoading, setLoading] = useState(false);
   const [total, setTotal] = useState('');
 
-  useEffect(() => {
-    if (page !== 1) {
-      fetchDataWhenPageChange();
-    }
-  }, [page]);
-  useEffect(() => {
-    if (text !== '') {
-      fetchWhenNewText();
-    }
-  }, [text]);
-
   const handleSubmit = e => {
     e.preventDefault();
     setImages([]);
@@ -58,6 +47,18 @@ const App = () => {
     setTotal(respons.total);
     setLoading(false);
   };
+
+  useEffect(() => {
+    if (page !== 1) {
+      fetchDataWhenPageChange();
+    }
+  }, [page]);
+
+  useEffect(() => {
+    if (text !== '') {
+      fetchWhenNewText();
+    }
+  }, [text]);
 
   const handleClick = e => {
     if (e.target.tagName === 'IMG') {
