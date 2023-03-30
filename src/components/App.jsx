@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Searchbar from 'components/Searchbar/Searchbar';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
 import Button from 'components/Button/Button';
@@ -77,7 +77,7 @@ const App = () => {
     }
   }, [page]);
   useEffect(() => {
-    if (text != '') {
+    if (text !== '') {
       fetchdata();
     }
   }, [text]);
