@@ -20,7 +20,7 @@ const App = () => {
 
   useEffect(() => {
     if (page !== 1) {
-      fetchdata1();
+      fetchdata();
     }
   }, [page]);
   useEffect(() => {
@@ -39,20 +39,6 @@ const App = () => {
     setText(imageText);
   };
 
-  const fetchdata1 = async () => {
-    const link = `https://pixabay.com/api/?q=${text}&page=${page}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12&height=250`;
-    const request = await fetch(link);
-    const respons = await request.json();
-
-    if (respons.hits.length === 0) {
-      Notiflix.Notify.failure('0 images found.');
-      setLoading(false);
-    } else {
-      setImages([...images, ...respons.hits]);
-      setTotal(respons.total);
-      setLoading(false);
-    }
-  };
   const fetchdata = async () => {
     const link = `https://pixabay.com/api/?q=${text}&page=${page}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12&height=250`;
     const request = await fetch(link);
@@ -92,7 +78,8 @@ const App = () => {
     }
   };
 
-  const loadMode = () => {
+  const loadMore = () => {
+    setLoading(true);
     setPage(page + 1);
   };
 
@@ -113,7 +100,7 @@ const App = () => {
       )}
 
       {images.length > 0 && total > images.length ? (
-        <Button loadMoreBttn={loadMode} />
+        <Button loadMoreBttn={loadMore} />
       ) : null}
     </>
   );
