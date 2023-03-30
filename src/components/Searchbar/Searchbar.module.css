@@ -1,0 +1,24 @@
+.searchbar {
+  display: flex;
+  justify-content: center;
+  background-color: #2463b5;
+  height: 50px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.input {
+  padding: 10px;
+  border-radius: 8px;
+  border-color: transparent;
+}
+
+.button {
+  padding: 5px;
+  border-radius: 8px;
+  border-color: transparent;
+  margin-right: 10px;
+}
+.button:hover {
+  background-color: rgb(38, 62, 91);
+  color: white;
+}

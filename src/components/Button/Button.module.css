@@ -1,0 +1,16 @@
+.bttnHolder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.bttnLoader {
+  padding: 10px 30px;
+  border-radius: 8px;
+  border-color: transparent;
+}
+.bttnLoader:hover {
+  background-color: rgb(38, 62, 91);
+  color: white;
+}
